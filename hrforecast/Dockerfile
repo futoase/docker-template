@@ -29,12 +29,12 @@ RUN yum -y install --enablerepo=nginx nginx
  
 # setup perlbrew
 RUN export PERLBREW_ROOT=/opt/perlbrew && curl -L http://install.perlbrew.pl | bash
-RUN source /opt/perlbrew/etc/bashrc && perlbrew install perl-5.18.1
-RUN source /opt/perlbrew/etc/bashrc && perlbrew use perl-5.18.1 && perlbrew install-cpanm
+RUN source /opt/perlbrew/etc/bashrc && perlbrew install perl-5.18.2
+RUN source /opt/perlbrew/etc/bashrc && perlbrew use perl-5.18.2 && perlbrew install-cpanm
  
 # install HRForecast
 RUN git clone https://github.com/kazeburo/HRForecast.git /root/HRForecast
-RUN source /opt/perlbrew/etc/bashrc && cd /root/HRForecast && perlbrew use perl-5.18.1 && cpanm -n -lextlib --installdeps .
+RUN source /opt/perlbrew/etc/bashrc && cd /root/HRForecast && perlbrew use perl-5.18.2 && cpanm -n -lextlib --installdeps .
  
 # setup mysql
 RUN chkconfig --level 2345 mysqld on
@@ -55,7 +55,7 @@ ADD ./template/iptables-setting.sh /root/iptables-setting.sh
 RUN chmod +x /root/iptables-setting.sh
 ADD ./startup.sh /root/startup.sh
 RUN chmod +x /root/startup.sh
-ENV PATH /opt/perlbrew/perls/perl-5.18.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ENV PATH /opt/perlbrew/perls/perl-5.18.2/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
  
 EXPOSE 80
 CMD ["/root/startup.sh"]
