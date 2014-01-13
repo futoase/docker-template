@@ -44,10 +44,6 @@ RUN service mysqld start && mysql -u root -e "GRANT CREATE, ALTER, DELETE, INSER
 RUN cd /root/HRForecast && sed -i -e "s/username => ''/username => 'hrforecast'/g" config.pl
 RUN cd /root/HRForecast && sed -i -e "s/password => ''/password => 'hrforecast'/g" config.pl
 
-# ssh setting
-RUN useradd hrforecast
-RUN echo 'hrforecast:hrforecast' | chpasswd
- 
 # nginx setup
 ADD ./template/nginx.conf /etc/nginx/conf.d/hrforecast.conf
 RUN rm /etc/nginx/conf.d/default.conf
@@ -62,4 +58,4 @@ RUN chmod +x /root/startup.sh
 ENV PATH /opt/perlbrew/perls/perl-5.18.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
  
 EXPOSE 80
-ENTRYPOINT ["/root/startup.sh"]
+CMD ["/root/startup.sh"]

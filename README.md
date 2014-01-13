@@ -6,4 +6,4 @@ My Docker templates.
 License
 -------
 
-[WTFPL](http://www.wtfpl.net/)
+[Apache License v2.0](http://www.apache.org/licenses/LICENSE-2.0)
